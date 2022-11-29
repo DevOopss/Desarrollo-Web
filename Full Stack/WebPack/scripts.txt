@@ -2,9 +2,12 @@ npm install webpack webpack-cli -D
 npm i html-webpack-plugin@latest -D
 
 npm install -D babel-loader @babel/core @babel/preset-env @babel/plugin-transform-runtime
+
 npm install -g mini-css-extract-plugin css-loader -D
 
 npm i copy-webpack-plugin@latest -D
+
+npm i clean-webpack-plugin@latest -D
 
 npm install url-loader file-loader -D
 
@@ -12,4 +15,37 @@ npm install css-minimizer-webpack-plugin -D
 
 npm install dotenv-webpack -D
 
+npm i clean-webpack-plugin -D
+
+npm i webpack-dev-server -D
+
+npm install -D webpack-bundle-analyzer
+
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+npx webpack --profile --json | Out-file 'stats.json' -Encoding OEM
+///////////////
+En webpack.config.dev.js agregar 
+devtool: "source-map"
+abajo de mode development
+
+///////////////////////
+
+
+
 npm install npm-check-updates terser-webpack-plugin -D
+
+
+///////////******************////////////////////////*******************************////////////////////
+
+
+npm i react react-dom -S
+
+npm init -y
+
+
+npm install -D @babel/core @babel/preset-env @babel/preset-react babel-loader
+
+npm install -D html-loader html-webpack-plugin
+
+npm install -D mini-css-extract-plugin css-loader style-loader sass sass-loader
