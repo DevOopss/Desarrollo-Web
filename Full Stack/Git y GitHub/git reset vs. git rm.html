@@ -1,0 +1,49 @@
+<div class="Header material-lecture">
+    <div class="Header-course">
+        <div class="Header-course-info">
+            <div class="Header-course-info-content">
+                <p>Freddy Vega</p></div></div><div class="Header-course-actions">
+                     <p>Volver en el tiempo en nuestro repositorio utilizando reset y checkout</p></div>
+                     <span>Flujo de trabajo básico con un repositorio remoto</span>
+                     <div class="Header-tooltip"><p>Flujo de trabajo básico con un repositorio remoto</p></div>
+                    </div></div>
+                    <div class="Header-class"><div class="Header-class-title">
+                        <h1>Git reset vs. Git rm</h1><span>13<!-- -->/<!-- -->43</span>
+                    </div>
+                    <div class="Header-class-report">< type="button" aria-label="Reportar un problema">
+                       <div class="Header-tooltip">
+                        <p>Reportar un problema</p>
+                    </div></div></div>
+                    <div class="Header-lecture">
+                        <p>Lectura</p></div></div><div class="MaterialLecture">
+                            <div class="MaterialLecture-text">
+                                <p>Git reset y git rm son comandos con utilidades muy diferentes, pero se pueden confundir muy fácilmente.</p>
+<h2>git rm</h2>
+<p>Este comando nos ayuda a eliminar archivos de Git sin eliminar su historial del sistema de versiones. Esto quiere decir que si necesitamos recuperar el archivo solo debemos “viajar en el tiempo” y recuperar el último commit antes de borrar el archivo en cuestión.</p>
+<p>Recuerda que <code>git rm</code> no puede usarse así nomás. Debemos usar uno de los flags para indicarle a Git cómo eliminar los archivos que ya no necesitamos en la última versión del proyecto:</p>
+<ul>
+<li><code>git rm --cached</code>: Elimina los archivos de nuestro repositorio local y del área de staging, pero los mantiene en nuestro disco duro. Básicamente le dice a Git que deje de trackear el historial de cambios de estos archivos, por lo que pasaran a un estado <code>untracked</code>.</li>
+<li><code>git rm --force</code>: Elimina los archivos de Git y del disco duro. Git siempre guarda todo, por lo que podemos acceder al registro de la existencia de los archivos, de modo que podremos recuperarlos si es necesario (pero debemos usar comandos más avanzados).</li>
+</ul>
+<h2>git reset</h2>
+<p>Este comando nos ayuda a volver en el tiempo. Pero no como <code>git checkout</code> que nos deja ir, mirar, pasear y volver. Con <code>git reset</code> volvemos al pasado sin la posibilidad de volver al futuro. Borramos la historia y la debemos sobreescribir. No hay vuelta atrás.</p>
+<p>Este comando es <strong>muy peligroso</strong> y debemos emplearlo solo en caso de emergencia. Recuerda que debemos usar alguna de estas dos opciones:</p>
+<p>Hay dos formas de utilizar <code>git reset</code>: con el argumento <code>--hard</code>, borrando toda la información que tengamos en el área de staging (y perdiendo todo para siempre). O, un poco más seguro, con el argumento <code>--soft</code>, que mantiene allí los archivos del área de staging para que podamos aplicar nuestros últimos cambios pero desde un commit anterior.</p>
+<ul>
+<li><code>git reset --soft</code>: Borramos todo el historial y los registros de Git pero guardamos los cambios que tengamos en Staging, así podemos aplicar las últimas actualizaciones a un nuevo commit.</li>
+<li><code>git reset --hard</code>: Borra todo. Todo todito, absolutamente todo. Toda la información de los commits y del área de staging se borra del historial.</li>
+</ul>
+<p><strong>¡Pero todavía falta algo!</strong></p>
+<ul>
+<li><code>git reset HEAD</code>: Este es el comando para sacar archivos del área de staging. No para borrarlos ni nada de eso, solo para que los últimos cambios de estos archivos no se envíen al último commit, a menos que cambiemos de opinión y los incluyamos de nuevo en staging con <code>git add</code>, por supuesto.</li>
+</ul>
+<h2>La relevancia de estos comandos</h2>
+<p>Imagina el siguiente caso:</p>
+<p>Hacemos cambios en los archivos de un proyecto para una nueva actualización. Todos los archivos con cambios se mueven al área de staging con el comando <code>git add</code>. Pero te das cuenta de que uno de esos archivos no está listo todavía. Actualizaste el archivo, pero ese cambio no debe ir en el próximo commit por ahora.</p>
+<p>¿Qué podemos hacer?</p>
+<p>Bueno, todos los cambios están en el área de Staging, incluido el archivo con los cambios que no están listos. Esto significa que debemos sacar ese archivo de Staging para poder hacer commit de todos los demás.</p>
+<p>¡Al usar <code>git rm</code> lo que haremos será eliminar este archivo completamente de git! Todavía tendremos el historial de cambios de este archivo, con la eliminación del archivo como su última actualización. Recuerda que en este caso no buscábamos eliminar un archivo, solo dejarlo como estaba y actualizarlo después, no en este commit.</p>
+<p>En cambio, si usamos <code>git reset HEAD</code>, lo único que haremos será mover estos cambios de Staging a Unstaged. Seguiremos teniendo los últimos cambios del archivo, el repositorio mantendrá el archivo (no con sus últimos cambios, pero sí con los últimos en los que hicimos commit) y no habremos perdido nada.</p>
+<p><strong>Conclusión</strong>: Lo mejor que puedes hacer para salvar tu puesto y evitar un incendio en tu trabajo es conocer muy bien la diferencia y los riesgos de todos los comandos de Git.</p>
+<p>Aporte creado por: Juan David Castro</p>
+</div></div>

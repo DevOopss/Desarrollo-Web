@@ -1,0 +1,15 @@
+npm install webpack webpack-cli -D
+npm i html-webpack-plugin@latest -D
+
+npm install -D babel-loader @babel/core @babel/preset-env @babel/plugin-transform-runtime
+npm install -g mini-css-extract-plugin css-loader -D
+
+npm i copy-webpack-plugin@latest -D
+
+npm install url-loader file-loader -D
+
+npm install css-minimizer-webpack-plugin -D
+
+npm install dotenv-webpack -D
+
+npm install npm-check-updates terser-webpack-plugin -D

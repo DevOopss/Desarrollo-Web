@@ -1,0 +1,42 @@
+<div class="MaterialView-content-wrapper"><div class="MaterialLecture"><div class="MaterialLecture-text"><p>Como viste en la clase de procesos podemos correr de manera asíncrona comandos, y si estos no se completan quedarán activos dentro de los procesos de la terminal.</p>
+<p>Cuando un proceso está en ejecución sin que sea mostrado en la terminal se dice que se está ejecutando en el <code>background</code>. Si se muestra la ejecución del comando dentro de la terminal se dice que está en el <code>foreground</code>. En esta clase aprenderás a cómo mover los procesos del background al foreground a tu voluntad, incluso a cómo suspenderlos.</p>
+<p>¿Te acuerdas del truco que aprendimos para tener un editor de texto supersencillo en la terminal? Lo usaremos en esta ocasión. Imagina que queremos una nota desde la terminal y para eso usamos:</p>
+<pre><code>cat &gt; mi_nota<span class="hljs-selector-class">.txt</span>
+</code></pre>
+<p>Nuestra terminal se verá de la siguiente manera, con el prompt esperando a que ingresemos texto.<br>
+<img src="https://static.platzi.com/media/user_upload/1-65129f78-f8b3-4db3-9485-96bb94e1481e.jpg" alt="1.png"></p>
+<p>Podemos escribir algo y después terminar el input del texto con CTRL+D, pero en esta ocasión no haremos eso. Lo que queremos hacer será suspender el proceso, esto lo podemos hacer con CTRL+Z. El resultado que nos mostrará la terminal deberá ser uno donde nos indique la suspensión del comando cat.<br>
+<img src="https://static.platzi.com/media/user_upload/2-0906e521-894d-4c24-af55-9b5e119d5948.jpg" alt="2.png"></p>
+<p>Ahora hemos movido nuestro comando exitosamente al background de la terminal. Para consultar todos los procesos que tenemos en background podemos hacerlo con el comando <code>jobs</code>.<br>
+<img src="https://static.platzi.com/media/user_upload/3-75170eaf-c131-4c7d-accb-38747edf9e0a.jpg" alt="3.png"></p>
+<p>A la izquierda aparece el número del trabajo ( ⚠ ️ cuidado que no es lo mismo que el process ID). Si queremos traer la ejecución de nuevo a la terminal, es decir, al foreground; debemos usar el comando <code>fg</code> y especificar qué número de trabajo queremos continuar. Para nuestro caso será el 1.</p>
+<pre><code><span class="hljs-built_in">fg</span> 1
+</code></pre>
+<p>En caso de que estés usando ZSH como shell el formato para llamar el trabajo sería con un porcentaje. ZSH tiende a interpretar algunas cosas incluyendo las wildcards de manera diferente.</p>
+<pre><code><span class="hljs-attribute">fg</span> <span class="hljs-number">%1</span>
+</code></pre>
+<p>Una vez enviado al foreground veremos como se activa la ejecución del comando en la terminal y podremos seguir escribiendo nuestra nota. Recuerda que una vez terminemos de escribir presionamos CTRL+D para terminar el input y guardar.<br>
+<img src="https://static.platzi.com/media/user_upload/4-b554577a-0b6c-4bbf-85c9-48f33406dfcf.jpg" alt="4.png"></p>
+<p>Cuando se guarda nuestra nota nos daremos cuenta de que el proceso por fin termina y si usamos jobs no nos mostrará ningún trabajo en background.</p>
+<h2>Otras formas de enviar al background</h2>
+<p>Existen otras formas de enviar comandos al background. La primera es usando el operador de control &amp; al final de un comando. Este operador nos permite enviar de manera directa un proceso al background una vez ejecutado. Por ejemplo:</p>
+<pre><code>cat &gt; mi_nota<span class="hljs-selector-class">.txt</span> &amp;
+</code></pre>
+<figure><img src="https://static.platzi.com/media/user_upload/5-02654ace-d20d-455f-b149-a6184ff820d0.jpg" alt="5.png"></figure>
+<p>La segunda forma es con el comando bg. Este sirve de manera similar que <code>fg</code> solo que en vez de traerlo al <code>foreground</code> este lleva un trabajo al <code>background</code>. Por ejemplo:</p>
+<pre><code><span class="hljs-keyword">bg </span><span class="hljs-number">1</span>
+</code></pre>
+<p>Bien, la pregunta ahora es ¿Cómo usamos <code>bg</code>? Imagina que abrimos algún programa de interfaz gráfica desde la terminal. En mi caso abriré el navegador Google Chrome. Para hacerlo desde la terminal solo ejecuta:</p>
+<pre><code class="language-bash">google-chrome-stable
+</code></pre>
+<p>Y verás como se ejecuta pero no nos deja hacer ninguna otra tarea ya que la ventana del navegador está abierta:</p>
+<figure><img src="https://static.platzi.com/media/user_upload/Screenshot%20from%202021-04-23%2017-14-17-52751c95-ccb7-4377-a9b5-b12cd588aea5.jpg" alt="Screenshot from 2021-04-23 17-14-17.png"></figure>
+<p>Para suspender el proceso como ya sabes lo hacemos con CTRL+Z y si revisamos con jobs veremos como el proceso se encuentra en pausa. En este caso la ventana del navegador que se abrió no nos dejará interactuar ni escribir en ella.</p>
+<figure><img src="https://static.platzi.com/media/user_upload/Screenshot%20from%202021-04-23%2017-17-05-122a7d59-f9db-4946-b265-7a78e72adf25.jpg" alt="Screenshot from 2021-04-23 17-17-05.png"></figure>
+<p>Como se ve en la imagen el navegador tiene el número de trabajo 1. Para dejar nuestro navegador corriendo y al mismo tiempo seguir trabajando en la terminal tenemos que reactivar este proceso y a la vez mandarlo al <code>background</code>. Para ello ejecutamos:</p>
+<pre><code><span class="hljs-keyword">bg </span><span class="hljs-number">1</span>
+</code></pre>
+<p>Con esto podremos ver como nuestro proceso de Google Chrome sigue corriendo en el <code>background</code> dejando la terminal disponible para nosotros.</p>
+<figure><img src="https://static.platzi.com/media/user_upload/Screenshot%20from%202021-04-23%2017-22-26-91c8a1ff-3936-484b-a1d9-a46bdbf7498f.jpg" alt="Screenshot from 2021-04-23 17-22-26.png"></figure>
+<p>¡Genial! Con esto ya sabes cómo mover procesos dentro de la terminal del foreground al background. Esto es muy útil cuando solo tenemos una terminal y necesitamos ejecutar varios comandos en paralelo. ¡Te espero en la siguiente clase!</p>
+</div></div></div>
